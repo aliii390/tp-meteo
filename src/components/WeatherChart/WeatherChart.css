@@ -1,0 +1,24 @@
+.weather-chart {
+  margin-top: 20px;
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .weather-chart {
+    height: 300px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .weather-chart {
+    height: 400px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1025px) {
+  .weather-chart {
+    height: 500px;
+  }
+}

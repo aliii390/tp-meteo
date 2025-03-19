@@ -1,0 +1,37 @@
+.meteo-card {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .meteo-card {
+    padding: 10px;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .search-input {
+    margin-bottom: 10px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .meteo-card {
+    padding: 15px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1025px) {
+  .meteo-card {
+    padding: 20px;
+  }
+}

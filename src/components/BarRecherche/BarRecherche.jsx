@@ -19,7 +19,7 @@ function BarRecherche({ onSearch }) {
         className="search-input"
         value={ville}
         onChange={(e) => setVille(e.target.value)}
-        placeholder="Rechercher une ville..."
+        placeholder="Rechercher une ville"
       />
       <button type="submit" className="search-button">
         Rechercher
