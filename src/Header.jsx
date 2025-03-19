@@ -5,8 +5,8 @@ import './Header.css'
 
 function Header() {
   return (
-    <header class="App-header">
-        <img src={Logo} class="App-logo" alt="logo" />
+    <header className="App-header">
+        <img src={Logo} className="App-logo" alt="logo" />
         </header>
   )
 }
