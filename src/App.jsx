@@ -1,4 +1,4 @@
-import './App.css'
+import './styles/App.css'
 import Header from './Header'
 import MeteoCard from './components/MeteoCard/MeteoCard'
 

@@ -38,6 +38,13 @@ function Temperature({ville}) {
     return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
+  const getWeatherAnimation = (condition) => {
+    if (condition.toLowerCase().includes('rain')) return 'rain-animation';
+    if (condition.toLowerCase().includes('sun')) return 'sun-animation';
+    if (condition.toLowerCase().includes('cloud')) return 'cloud-animation';
+    return '';
+  };
+
   if (chargement) return <div>sa charge patiente mec</div>;
   if (erreur) return <div>Erreur: {erreur}</div>;
   if (!temperature || !temperature.forecast) return null;
@@ -45,18 +52,18 @@ function Temperature({ville}) {
   const selectionJour = temperature.forecast.forecastday[activeDay];
 
   return (
-    <>
+    <div className="temperature-container">
       <div className="card-content white-text">
         <span className="card-title">{temperature.location.name}</span>
-        <span>{temperature.location.region}</span>
-        <p>
-          <img 
-            src={selectionJour.day.condition.icon} 
-            alt={selectionJour.day.condition.text} 
-          />
-        </p>
+        <span className="region">{temperature.location.region}</span>
+        <img 
+          className={`weather-icon ${getWeatherAnimation(selectionJour.day.condition.text)}`}
+          src={selectionJour.day.condition.icon} 
+          alt={selectionJour.day.condition.text} 
+        />
         <span className="temperature">{selectionJour.day.avgtemp_c}°</span>
         <div className="wind">
+          <i className="fas fa-wind"></i>
           Vent {selectionJour.day.maxwind_kph} km/h
         </div>
       </div>
@@ -72,7 +79,7 @@ function Temperature({ville}) {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,60 +1,144 @@
+.temperature-container {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease;
+}
+
+.temperature-container:hover {
+  transform: translateY(-5px);
+}
+
 .card-content {
-  text-align: center;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 25px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  background: linear-gradient(90deg, #64B5F6, #81D4FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .temperature {
-  font-size: 48px;
-  font-weight: bold;
+  font-size: 4rem;
+  font-weight: 700;
+  display: block;
+  margin: 20px 0;
+  color: #fff;
+  animation: pulseTemp 2s infinite ease-in-out;
+}
+
+.weather-icon {
+  width: 120px;
+  height: 120px;
+  animation: float 3s infinite ease-in-out;
 }
 
 .wind {
-  font-size: 18px;
-  color: #555;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .date-buttons {
   display: flex;
-  justify-content: center;
+  gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .date-button {
-  padding: 10px 15px;
-  margin: 0 5px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   cursor: pointer;
-}
-
-.date-button.active {
-  background-color: #0056b3;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .date-button:hover {
-  background-color: #0056b3;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Mobile devices */
+.date-button.active {
+  background: linear-gradient(145deg, #64B5F6, #81D4FA);
+  box-shadow: 0 4px 15px rgba(100, 181, 246, 0.4);
+}
+
+@keyframes pulseTemp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Animations conditionnelles selon la météo */
+.rain-animation { animation: rain 1s infinite linear; }
+.sun-animation { animation: sun 3s infinite linear; }
+.cloud-animation { animation: cloud 8s infinite linear; }
+
+@keyframes rain {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(10px) rotate(3deg); }
+}
+
+@keyframes sun {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cloud {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
+}
+
 @media (max-width: 600px) {
-  .temperature {
-    font-size: 36px;
+  .card-content {
+    padding: 15px;
   }
 
-  .wind {
-    font-size: 16px;
+  .temperature {
+    font-size: 2.5rem;
   }
 
   .date-buttons {
-    flex-direction: column;
+    gap: 8px;
   }
 
   .date-button {
-    margin: 5px 0;
+    padding: 8px 15px;
+    font-size: 0.9rem;
   }
 }

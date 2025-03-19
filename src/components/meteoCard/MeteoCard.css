@@ -1,16 +1,24 @@
 .meteo-card {
-  padding: 20px;
-  margin: 0 auto;
+  padding: 25px;
+  margin: 2rem auto;
   max-width: 1200px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.meteo-content {
+  display: flex;
+  gap: 25px;
+  margin-top: 25px;
 }
 
 /* Mobile devices */
 @media (max-width: 600px) {
   .meteo-card {
-    padding: 10px;
+    padding: 15px;
+    margin: 1rem;
+    border-radius: 12px;
   }
 
   .search-container {
@@ -20,6 +28,11 @@
   .search-input {
     margin-bottom: 10px;
   }
+
+  .meteo-content {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
 /* Tablets */
@@ -27,11 +40,20 @@
   .meteo-card {
     padding: 15px;
   }
+
+  .meteo-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 /* Desktops */
 @media (min-width: 1025px) {
   .meteo-card {
     padding: 20px;
+  }
+
+  .meteo-content {
+    flex-direction: row;
   }
 }

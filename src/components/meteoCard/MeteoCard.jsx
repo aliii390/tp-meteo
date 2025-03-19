@@ -14,8 +14,10 @@ function MeteoCard() {
   return (
     <div className="meteo-card">
       <BarRecherche onSearch={handleSearch} />
-      <WeatherChart ville={villeSelectionnee} />
-      <Temperature ville={villeSelectionnee} />
+      <div className="meteo-content">
+        <Temperature ville={villeSelectionnee} />
+        <WeatherChart ville={villeSelectionnee} />
+      </div>
     </div>
   );
 }
