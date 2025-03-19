@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import sun from "../../assets/sun.svg";
 import "./Temperature.css";
-
-// const url =
+import Date from "../Date/Date";
 
 function Temperature() {
-  const [temperature, setTemperature] = useState([]);
+  const [temperature, setTemperature] = useState(null);
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(0);
 
   useEffect(() => {
     fetch(
-      "NAIM_API"
+      `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_METEO_API}&q=Saint%20Etienne&days=5&aqi=yes&alerts=no`
     )
       .then((response) => {
         if (!response.ok) {
@@ -22,7 +21,6 @@ function Temperature() {
       .then((data) => {
         setTemperature(data);
         console.log(data);
-        
         setChargement(false);
       })
       .catch((erreur) => {
@@ -31,19 +29,38 @@ function Temperature() {
       });
   }, []);
 
+  const handleDateSelect = (day) => {
+    setSelectedDay(day);
+  };
+
   if (chargement) return <div>sa charge patiente mec</div>;
   if (erreur) return <div>Erreur: {erreur}</div>;
+  if (!temperature) return null;
+
+  const selectedForecast = temperature.forecast.forecastday[selectedDay];
+
   return (
     <>
+ 
       <div className="card-content white-text">
         <span className="card-title">{temperature.location.name}</span>
         <span>{temperature.location.region}</span>
         <p>
-          <img src={temperature.current.condition.icon} alt={temperature.current.condition.text} />
+          <img 
+            src={selectedForecast.day.condition.icon} 
+            alt={selectedForecast.day.condition.text} 
+          />
         </p>
-        <span className="temperature">{temperature.current.temp_c}°</span>
-        <div className="wind">Vent 1km/h (360°)</div>
+        <span className="temperature">{selectedForecast.day.avgtemp_c}°</span>
+        <div className="wind">
+          Vent {selectedForecast.day.maxwind_kph} km/h
+        </div>
       </div>
+
+      <div className="card-action">
+      <Date onDateSelect={handleDateSelect} />
+
+  </div>
     </>
   );
 }
