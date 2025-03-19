@@ -1,12 +1,31 @@
+import React, { useState } from 'react';
+import './Recherche.css';
 
-import React from 'react'
+function BarRecherche({ onSearch }) {
+  const [ville, setVille] = useState('');
 
-function BarRecherche() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (ville.trim()) {
+      onSearch(ville);
+      setVille('');
+    }
+  };
+
   return (
-    <div>BarRecherche</div>
-  )
+    <form onSubmit={handleSubmit} className="search-container">
+      <input
+        type="text"
+        className="search-input"
+        value={ville}
+        onChange={(e) => setVille(e.target.value)}
+        placeholder="Rechercher une ville..."
+      />
+      <button type="submit" className="search-button">
+        Rechercher
+      </button>
+    </form>
+  );
 }
 
-export default BarRecherche
-
-// comment je peut faire pour la bar de recherche ?? 
+export default BarRecherche;

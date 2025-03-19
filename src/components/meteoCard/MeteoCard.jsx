@@ -1,13 +1,20 @@
-
-import React from 'react'
-
-import Temperature from '../Temperature/Temperature'
+import React, { useState } from 'react';
+import Temperature from '../Temperature/Temperature';
+import BarRecherche from '../BarRecherche/BarRecherche';
 
 function MeteoCard() {
+  const [villeSelectionnee, setVilleSelectionnee] = useState('Saint Etienne');
+
+  const handleSearch = (nouvelleVille) => {
+    setVilleSelectionnee(nouvelleVille);
+  };
+
   return (
-   
-    <Temperature />
-  )
+    <div className="meteo-card">
+      <BarRecherche onSearch={handleSearch} />
+      <Temperature ville={villeSelectionnee} />
+    </div>
+  );
 }
 
-export default MeteoCard
+export default MeteoCard;

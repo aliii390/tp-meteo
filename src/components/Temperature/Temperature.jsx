@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Temperature.css";
+import "../Date/Date.css"
 
-function Temperature() {
+function Temperature({ville}) {
   const [temperature, setTemperature] = useState([]);
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(null);
@@ -9,7 +10,7 @@ function Temperature() {
 
   useEffect(() => {
     fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_METEO_API}&q=Saint%20Etienne&days=5&aqi=yes&alerts=no`
+     `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_METEO_API}&q=${ville}&days=5&aqi=yes&alerts=no`
     )
       .then((response) => {
         if (!response.ok) {
@@ -25,7 +26,7 @@ function Temperature() {
         setErreur(erreur.message);
         setChargement(false);
       });
-  }, []);
+  }, [ville]);
 
   const handleDateClick = (day) => {
     setActiveDay(day);

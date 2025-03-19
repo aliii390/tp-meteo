@@ -1,7 +1,6 @@
 import './App.css'
 import Header from './Header'
 import MeteoCard from './components/MeteoCard/MeteoCard'
-import Date from './components/Date/Date'
 
 
 
@@ -13,6 +12,7 @@ function App() {
 <div className="App">
 
 <Header />
+
 
 <div className="row">
 
